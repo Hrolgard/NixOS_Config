@@ -8,9 +8,14 @@
             url = "github:nix-community/home-manager/release-26.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        zen-browser = {
+            url = "github:youwen5/zen-browser-flake";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }: {
+    outputs = { self, nixpkgs, home-manager, zen-browser, ... }: {
         nixosConfigurations = {
             framework = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
@@ -24,7 +29,15 @@
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages= true;
 
-                        home-manager.users.hrolgard = import ./home.nix;
+                        home-manager.users.hrolgard = {pkgs, ...}: {
+                            imports = [
+                                ./home.nix
+                            ];
+
+                            home.packages = [
+                                zen-browser.packages.${pkgs.system}.default
+                            ];
+                        };
                     }
                 ];
             };
