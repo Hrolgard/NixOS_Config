@@ -1,6 +1,7 @@
-{config, pkgs, ...}:
+{config, pkgs, system, inputs, ...}:
 
 {
+    #Home definitions
     home.username = "hrolgard";
     home.homeDirectory = "/home/hrolgard";
 
@@ -8,9 +9,14 @@
 
     programs.home-manager.enable = true;
 
-        #nixpkgs.config.allowUnfree = true;
+    #imports
+    imports = [
+        inputs.zen-browser.homeModules.twilight
+    ];
 
+    #discord
     home.packages = with pkgs; [
         discord
+        inputs.zen-browser.packages."${system}".default
     ];
 }
