@@ -9,11 +9,6 @@
 
     programs.home-manager.enable = true;
 
-    #imports
-    imports = [
-        inputs.zen-browser.homeModules.twilight
-    ];
-
     #discord
     home.packages = with pkgs; [
         discord
