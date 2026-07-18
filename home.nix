@@ -9,15 +9,33 @@
 
     programs.home-manager.enable = true;
 
-    #discord
+
+    #packages
     home.packages = with pkgs; [
         discord
         #inputs.zen-browser.packages."${system}".default
     ];
 
+    #imports
     imports = [
         inputs.zen-browser.homeModules.beta
     ];
+
+
+    # !-- Niri Configuration --!
+
+    xdg.configFile."niri/config.kdl".source = ./niri-configuration.kdl;
+
+    programs.alacritty.enable = true; # Super+T in the default setting (terminal)
+    programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
+    #services.polkit-gnome.enable = true; # polkit
+    #home.packages = with pkgs; [
+    #    swaybg # wallpaper
+    #];
+
+
+
+    # !-- Zen Browser --!
 
     programs.zen-browser = {
         enable = true;
