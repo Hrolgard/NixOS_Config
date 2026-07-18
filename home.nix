@@ -23,7 +23,6 @@
         enable = true;
         setAsDefaultBrowser = true;
         profiles.default.presets.betterfox.enable = true;
-        profiles.default.presets.arkenfox.enable = true;
     };
 
     programs.zen-browser.profiles.default.settings = {
