@@ -14,6 +14,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.home-manager.follows = "home-manager";
         };
+
+        noctalia = {
+            url = "github:noctalia-dev/noctalia";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { self, nixpkgs, home-manager, zen-browser, ... } @ inputs : {

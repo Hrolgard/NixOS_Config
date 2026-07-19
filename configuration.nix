@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./niri.nix
-      ./noctalia.nix
       ./audio.nix
       ./desktop.nix
     ];
@@ -30,6 +29,13 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  #enable bluetooth
+  hardware.bluetooth.enable = true;
+
+  #power stuffs for noctalia
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
