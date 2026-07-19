@@ -1,4 +1,5 @@
-{...}: {
+{inputs, ...}: {
+
     imports = [
         inputs.zen-browser.homeModules.beta
     ];
@@ -7,17 +8,16 @@
         enable = true;
         setAsDefaultBrowser = true;
         profiles.default.presets.betterfox.enable = true;
-    };
-
-    programs.zen-browser.profiles.default.settings = {
-        "zen.workspaces.continue-where-left-off" = true;
-        "zen.view.compact.hide-tabbar" = true;
-        "zen.urlbar.behavior" = "float";
-        "zen.welcome-screen.seen" = true;
-  };
 
 
-    programs.zen-browser.policies = let
+        profiles.default.settings = {
+            "zen.workspaces.continue-where-left-off" = true;
+            "zen.view.compact.hide-tabbar" = true;
+            "zen.urlbar.behavior" = "float";
+            "zen.welcome-screen.seen" = true;
+        };
+
+        policies = let
         mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
             installation_mode = "force_installed";
@@ -45,5 +45,6 @@
             Cryptomining = true;
             Fingerprinting = true;
         };
+    };
     };
 }

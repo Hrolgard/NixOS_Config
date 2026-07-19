@@ -17,8 +17,7 @@
 
     #imports
     imports = [
-        inputs.zen-browser.homeModules.beta
-        ./home_kity.nix
+        ./home_kitty.nix
         ./home_zen.nix
         ./home_noctalia.nix
     ];
