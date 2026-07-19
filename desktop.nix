@@ -9,4 +9,5 @@
     programs.firefox.enable = true;
     programs.git.enable = true;
     programs.thunderbird.enable = true;
+    programs.fish.enable = true;
 }

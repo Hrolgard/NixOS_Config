@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./niri.nix
-      #./noctalia.nix
+      ./noctalia.nix
       ./audio.nix
       ./desktop.nix
     ];
