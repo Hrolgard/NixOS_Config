@@ -2,7 +2,7 @@
 
     programs.niri = {
         enable = true;
-        withXwayland = true;
+        #withXwayland = true;
     };
     systemd.user.services.niri.enableDefaultPath = false;
 }

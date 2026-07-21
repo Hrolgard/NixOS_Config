@@ -13,6 +13,7 @@
     #packages
     home.packages = with pkgs; [
         discord
+        nextcloud-client
     ];
 
     #imports
