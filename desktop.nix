@@ -4,6 +4,7 @@
     # $ nix search [regex]
     environment.systemPackages = with pkgs; [
         kdePackages.kate
+        kdePackages.okular
         pkgs.onlyoffice-desktopeditors
         qt6.qtwayland
         xwayland
