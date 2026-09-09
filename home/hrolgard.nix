@@ -21,9 +21,10 @@
         ./modules/kitty.nix
         ./modules/zen.nix
         ./modules/noctalia.nix
-        ./modules/git.nix
+        ./modules/development/git.nix
         ./modules/plasma.nix
         ./modules/theme.nix
+        ./modules/development/vsc.nix
     ];
 
     # !-- Niri Configuration --!
