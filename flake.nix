@@ -26,7 +26,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, ... } @ inputs : {
+  outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager ... } @ inputs : {
     nixosConfigurations = {
 
       # ---- Framework Laptop ----
