@@ -24,7 +24,7 @@
         ./modules/development/git.nix
         ./modules/plasma.nix
         ./modules/theme.nix
-        ./modules/development/vsc.nix
+        ./modules/development/vsc/vsc.nix
     ];
 
     # !-- Niri Configuration --!
