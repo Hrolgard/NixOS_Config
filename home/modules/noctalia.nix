@@ -28,6 +28,11 @@
                     "tray" "notifications" "clipboard" "network" "bluetooth" "volume" "brightness" "battery" "control-center" "session"
                 ];
             };
+        theme = {
+                mode = "dark";
+                source = "builtin";
+                builtin = "Noctalia";
+            };
         };
     };
 }
