@@ -23,6 +23,7 @@
         ./modules/noctalia.nix
         ./modules/git.nix
         ./modules/plasma.nix
+        ./modules/theme.nix
     ];
 
     # !-- Niri Configuration --!
