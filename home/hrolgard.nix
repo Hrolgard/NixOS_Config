@@ -26,7 +26,7 @@
 
     # !-- Niri Configuration --!
 
-    xdg.configFile."niri/config.kdl".source = ./niri-configuration.kdl;
+    xdg.configFile."niri/config.kdl".source = ./modules/niri-configuration.kdl;
 
     programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
 
