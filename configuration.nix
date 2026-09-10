@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -11,6 +11,7 @@
       # da sie maschinenspezifisch ist.
       ./modules/audio.nix
       ./modules/common-apps.nix
+      ./modules/noctalia_greeter.nix
     ];
 
   # Bootloader.
@@ -59,7 +60,8 @@
   programs.xwayland.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  # sddm = false, because I use the noctalia greeter
+  services.displayManager.sddm.enable = false;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11

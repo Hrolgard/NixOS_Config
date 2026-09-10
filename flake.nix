@@ -20,13 +20,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager, ... } @ inputs : {
+    outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager, ... } @ inputs : {
     nixosConfigurations = {
 
       # ---- Framework Laptop ----
