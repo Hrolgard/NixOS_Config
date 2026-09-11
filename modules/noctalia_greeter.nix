@@ -15,3 +15,7 @@
         };
     };
 }
+
+# !-- IMPORTANT --!
+# When using this greeter, set services.displayManager.sddm.enable = false; in configuration.nix
+# When NOT using this greeter, set services.displayManager.sddm.enable = true; in configuration.nix so you use the plasma greeter instead.
