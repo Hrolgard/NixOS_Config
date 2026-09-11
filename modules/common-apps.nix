@@ -8,6 +8,7 @@
     qt6.qtwayland
     xwayland
     xwayland-satellite
+    pkgs.plex-desktop
   ];
 
   environment.sessionVariables = {
@@ -21,8 +22,4 @@
   programs.niri.enable = true;
   systemd.user.services.niri.enableDefaultPath = false;
 
-  services.plex = {
-    enable = true;
-    openFirewall = true;
-  };
 }
