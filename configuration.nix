@@ -95,6 +95,10 @@
     "flakes"
   ];
 
+  # Fixes Dolphin file associations / default apps outside of KDE Plasma
+  environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
