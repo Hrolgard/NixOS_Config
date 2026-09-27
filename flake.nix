@@ -29,6 +29,11 @@
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+    url = "github:nix-community/lanzaboote/v1.1.0";
+    inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
     outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager, ... } @ inputs : {
