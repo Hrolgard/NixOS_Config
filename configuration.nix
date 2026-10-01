@@ -12,6 +12,7 @@
       ./modules/audio.nix
       ./modules/common-apps.nix
       ./modules/noctalia_greeter.nix
+      ./modules/audacity.nix
     ];
 
   # Bootloader.
