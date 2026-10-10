@@ -37,6 +37,15 @@
   # gamemode
   programs.gamemode.enable = true;
 
+  #gamescope
+  programs = {
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+    steam.gamescopeSession.enable = true;
+  };
+
   # ProtonUp-QT
   environment.systemPackages = with pkgs; [
   protonup-qt
