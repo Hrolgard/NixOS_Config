@@ -46,8 +46,9 @@
     steam.gamescopeSession.enable = true;
   };
 
-  # ProtonUp-QT
+  # ProtonUp-QT & Lutris
   environment.systemPackages = with pkgs; [
   protonup-qt
+  lutris
 ];
 }

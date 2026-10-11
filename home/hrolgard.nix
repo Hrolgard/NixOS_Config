@@ -26,6 +26,7 @@
         ./modules/theme.nix
         ./modules/development/vsc/vsc.nix
         ./modules/default_apps.nix
+        ./modules/craftapps.nix
     ];
 
     # !-- Niri Configuration --!

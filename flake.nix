@@ -31,12 +31,17 @@
     };
 
     lanzaboote = {
-    url = "github:nix-community/lanzaboote/v1.1.0";
-    inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-craftapps = {
+      url = "github:olafkfreund/nix-craftapps";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-    outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager, ... } @ inputs : {
+    outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager, nix-craftapps, ... } @ inputs : {
     nixosConfigurations = {
 
       # ---- Framework Laptop ----
@@ -46,12 +51,11 @@
           inherit inputs;
         };
         modules = [
+        { networking.hostName = "framework"; }
+
           ./configuration.nix
           ./hosts/framework/framework.nix
-          { networking.hostName = "framework"; }
-
-          home-manager.nixosModules.home-manager
-          {
+          home-manager.nixosModules.home-manager {
             home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -61,6 +65,7 @@
               system = "x86_64-linux";
             };
           }
+          nix-craftapps.nixosModules.default
         ];
       };
 
@@ -71,12 +76,11 @@
           inherit inputs;
         };
         modules = [
+        { networking.hostName = "desktop"; }
+
           ./configuration.nix
           ./hosts/desktop/desktop.nix
-          { networking.hostName = "desktop"; }
-
-          home-manager.nixosModules.home-manager
-          {
+          home-manager.nixosModules.home-manager {
             home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -86,6 +90,7 @@
               system = "x86_64-linux";
             };
           }
+          nix-craftapps.nixosModules.default
         ];
       };
 
