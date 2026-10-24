@@ -4,4 +4,5 @@ with pkgs.vscode-extensions; [
     oderwat.indent-rainbow
     zainchen.json
     mechatroner.rainbow-csv
+    mkhl.direnv
 ]

@@ -9,6 +9,7 @@
     xwayland
     xwayland-satellite
     pkgs.plex-desktop
+    pkgs.htop
   ];
 
   environment.sessionVariables = {
