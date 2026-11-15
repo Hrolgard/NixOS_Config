@@ -633,7 +633,7 @@ binds {
     // Core Noctalia binds
     Mod+Space  { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
+    // Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
     Mod+odiaeresis { spawn-sh "noctalia msg panel-toggle session"; }
     // Niri has a built-in window switcher you might want to try it to see which one you prefer.
 
