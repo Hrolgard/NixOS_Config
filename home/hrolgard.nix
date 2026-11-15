@@ -27,10 +27,10 @@
         ./modules/development/vsc/vsc.nix
         ./modules/default_apps.nix
         ./modules/craftapps.nix
+        ./modules/audio_production.nix
     ];
 
-    # !-- Niri Configuration --!
-
+    #Niri Configuration
     xdg.configFile."niri/config.kdl".source = ./modules/niri-configuration.kdl;
 
     programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)

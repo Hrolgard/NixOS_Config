@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia-plugins = {
+      url = "github:noctalia-dev/official-plugins";
+      flake = false;
+    };
+
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +42,11 @@
 
     nix-craftapps = {
       url = "github:olafkfreund/nix-craftapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    reaper-flake = {
+      url = "github:9Prestidigitator/reaper-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

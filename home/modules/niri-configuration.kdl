@@ -5,6 +5,9 @@
 
 spawn-at-startup "noctalia"
 
+include "noctalia.kdl"
+
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Input

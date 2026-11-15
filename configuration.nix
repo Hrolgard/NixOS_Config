@@ -56,9 +56,11 @@
   };
 
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
   programs.xwayland.enable = true;
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+  ];
 
   # Enable the KDE Plasma Desktop Environment.
   # sddm = false, because I use the noctalia greeter

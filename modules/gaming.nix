@@ -35,7 +35,10 @@
   };
 
   # gamemode
-  programs.gamemode.enable = true;
+  programs.gamemode = {
+    enable = true;
+    settings.general.desiredgov = "performance";
+  };
 
   #gamescope
   programs = {

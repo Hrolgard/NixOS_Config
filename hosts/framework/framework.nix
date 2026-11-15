@@ -3,6 +3,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../../modules/audio_production.nix
     ];
 
 

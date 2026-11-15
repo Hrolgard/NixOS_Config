@@ -31,6 +31,27 @@
         "type": "github"
       }
     },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "reaper-flake",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793576659,
+        "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -195,6 +216,22 @@
         "type": "github"
       }
     },
+    "noctalia-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794528219,
+        "narHash": "sha256-JQDsY3fmpL57cqG1aCcLJablwTfcwIIJ44BtXj/sowE=",
+        "owner": "noctalia-dev",
+        "repo": "official-plugins",
+        "rev": "5dc1d19b1aa6be331ee6506034dc8448aca5c446",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "official-plugins",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": "home-manager_2",
@@ -239,6 +276,27 @@
         "type": "github"
       }
     },
+    "reaper-flake": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794684696,
+        "narHash": "sha256-DgrW0kxhDTwspGWNolUILEpKWDvMU7PzZS3PJVGuQLM=",
+        "owner": "9Prestidigitator",
+        "repo": "reaper-flake",
+        "rev": "8a9c7bce9af90da94d7c13ad13003cde57c8b349",
+        "type": "github"
+      },
+      "original": {
+        "owner": "9Prestidigitator",
+        "repo": "reaper-flake",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -247,7 +305,9 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
+        "noctalia-plugins": "noctalia-plugins",
         "plasma-manager": "plasma-manager",
+        "reaper-flake": "reaper-flake",
         "zen-browser": "zen-browser"
       }
     },
