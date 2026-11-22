@@ -2,13 +2,11 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, inputs, ... }:
+{pkgs, ... }:
 
 {
   imports =
     [ # Gemeinsame Module fuer alle Hosts.
-      # hardware-configuration.nix wird pro Host in flake.nix eingebunden,
-      # da sie maschinenspezifisch ist.
       ./modules/audio.nix
       ./modules/common-apps.nix
       ./modules/noctalia_greeter.nix
@@ -92,11 +90,14 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  #activate experimental features
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # Nix-Settings
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [ "https://noctalia.cachix.org" ];
+    trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
+  };
 
   # Fixes Dolphin file associations / default apps outside of KDE Plasma
   environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";

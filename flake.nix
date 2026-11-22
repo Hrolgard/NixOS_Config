@@ -22,6 +22,7 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    # Kein nixpkgs-follows, damit der Noctalia-Binary-Cache trifft
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -58,59 +59,41 @@
     };
   };
 
-    outputs = { self, nixpkgs, home-manager, zen-browser, plasma-manager, nix-craftapps, ... } @ inputs : {
-    nixosConfigurations = {
+  outputs = { nixpkgs, home-manager, ... } @ inputs:
+    let
+      system = "x86_64-linux";
 
-      # ---- Framework Laptop ----
-      framework = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
+      mkHost = hostName: nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
-        { networking.hostName = "framework"; }
+          { networking.hostName = hostName; }
 
           ./configuration.nix
-          ./hosts/framework/framework.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.backupFileExtension = "backup";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.hrolgard = import ./home/hrolgard.nix;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              system = "x86_64-linux";
+          ./hosts/${hostName}/${hostName}.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "backup";
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.hrolgard.imports = [
+                ./home/hrolgard.nix
+                ./home/hosts/${hostName}.nix
+              ];
+              extraSpecialArgs = { inherit inputs; };
             };
           }
-          nix-craftapps.nixosModules.default
         ];
       };
-
-      # ---- Desktop PC (Steam + NVIDIA) ----
-      desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-        { networking.hostName = "desktop"; }
-
-          ./configuration.nix
-          ./hosts/desktop/desktop.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.backupFileExtension = "backup";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.hrolgard = import ./home/hrolgard.nix;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              system = "x86_64-linux";
-            };
-          }
-          nix-craftapps.nixosModules.default
-        ];
+    in
+    {
+      nixosConfigurations = {
+        framework = mkHost "framework";
+        desktop = mkHost "desktop";
       };
 
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
     };
-  };
 }
