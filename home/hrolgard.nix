@@ -39,4 +39,5 @@
     xdg.configFile."niri/config.kdl".source = ./modules/niri-configuration.kdl;
 
     programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
+    programs.fish.enable = true; #Shell
 }

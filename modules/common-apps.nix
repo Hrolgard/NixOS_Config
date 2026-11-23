@@ -18,7 +18,6 @@
 
   programs.firefox.enable = true;
   programs.thunderbird.enable = true;
-  programs.fish.enable = true;
 
   programs.niri.enable = true;
   systemd.user.services.niri.enableDefaultPath = false;
