@@ -51,7 +51,7 @@
 
   # ProtonUp-QT & Lutris
   environment.systemPackages = with pkgs; [
-  protonup-qt
-  lutris
-];
+    protonup-qt
+    lutris
+  ];
 }
