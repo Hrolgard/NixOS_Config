@@ -32,6 +32,9 @@
         ./modules/plasma.nix
         ./modules/theme.nix
 
+        ./modules/yazi.nix
+        ./modules/neovim/neovim.nix
+
         #./modules/craftapps.nix
     ];
 

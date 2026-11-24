@@ -52,34 +52,37 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... } @ inputs:
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
 
-      mkHost = hostName: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          { networking.hostName = hostName; }
+      mkHost =
+        hostName:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            { networking.hostName = hostName; }
 
-          ./configuration.nix
-          ./hosts/${hostName}/${hostName}.nix
+            ./configuration.nix
+            ./hosts/${hostName}/${hostName}.nix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              backupFileExtension = "backup";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.hrolgard.imports = [
-                ./home/hrolgard.nix
-                ./home/hosts/${hostName}.nix
-              ];
-              extraSpecialArgs = { inherit inputs; };
-            };
-          }
-        ];
-      };
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                backupFileExtension = "backup";
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.hrolgard.imports = [
+                  ./home/hrolgard.nix
+                  ./home/hosts/${hostName}.nix
+                ];
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+          ];
+        };
     in
     {
       nixosConfigurations = {
