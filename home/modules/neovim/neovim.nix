@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
 
@@ -29,6 +27,9 @@
       nvim-lspconfig
       blink-cmp
 
+      # Rust
+      rustaceanvim
+
       # Editing
       conform-nvim
       gitsigns-nvim
@@ -46,6 +47,13 @@
       nixd
       lua-language-server
       bash-language-server
+
+      # Rust toolchain (rust-analyzer, formatter, linter)
+      rust-analyzer
+      rustfmt
+      clippy
+      cargo
+      rustc
 
       # Formatters
       nixfmt

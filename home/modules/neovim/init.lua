@@ -23,9 +23,9 @@ o.clipboard = "unnamedplus" -- needs wl-clipboard on Wayland
 
 -- Colorscheme (transparent, so kitty's background_opacity still shows)
 require("tokyonight").setup({
-  style = "night",
-  transparent = true,
-  styles = { sidebars = "transparent", floats = "transparent" },
+	style = "night",
+	transparent = true,
+	styles = { sidebars = "transparent", floats = "transparent" },
 })
 vim.cmd.colorscheme("tokyonight")
 
@@ -53,34 +53,77 @@ vim.keymap.set("n", "<leader>E", "<cmd>Yazi cwd<cr>", { desc = "Yazi (working di
 
 -- Treesitter: parsers come from nixpkgs, highlighting is started by Neovim itself
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function(args)
-    pcall(vim.treesitter.start, args.buf)
-  end,
+	callback = function(args)
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })
 
 -- Completion
 require("blink.cmp").setup({
-  keymap = { preset = "default" },
-  sources = { default = { "lsp", "path", "buffer" } },
+	keymap = { preset = "default" },
+	sources = { default = { "lsp", "path", "buffer" } },
 })
 
 -- LSP (Neovim 0.11+ API, server defaults come from nvim-lspconfig)
 vim.lsp.config("*", {
-  capabilities = require("blink.cmp").get_lsp_capabilities(),
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
 vim.lsp.config("lua_ls", {
-  settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+	settings = { Lua = { diagnostics = { globals = { "vim" } } } },
 })
+-- rust-analyzer is NOT listed here: rustaceanvim starts it
 vim.lsp.enable({ "nixd", "lua_ls", "bashls" })
 
 vim.diagnostic.config({ virtual_text = true })
 
+-- gd: jump to definition (only where an LSP server is attached)
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+			buffer = args.buf,
+			desc = "Go to definition",
+		})
+	end,
+})
+
+-- Rust: rustaceanvim starts rust-analyzer itself
+vim.g.rustaceanvim = {
+	server = {
+		capabilities = require("blink.cmp").get_lsp_capabilities(),
+		default_settings = {
+			["rust-analyzer"] = { check = { command = "clippy" } },
+		},
+	},
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function(args)
+		local map = function(lhs, cmd, desc)
+			vim.keymap.set("n", lhs, cmd, { buffer = args.buf, desc = desc })
+		end
+		map("<leader>rr", function()
+			vim.cmd.RustLsp("runnables")
+		end, "Rust: runnables")
+		map("<leader>rt", function()
+			vim.cmd.RustLsp("testables")
+		end, "Rust: testables")
+		map("<leader>re", function()
+			vim.cmd.RustLsp("expandMacro")
+		end, "Rust: expand macro")
+		map("<leader>rd", function()
+			vim.cmd.RustLsp("renderDiagnostic")
+		end, "Rust: show diagnostic")
+	end,
+})
+
 -- Formatting
 require("conform").setup({
-  formatters_by_ft = {
-    nix = { "nixfmt" },
-    lua = { "stylua" },
-    sh = { "shfmt" },
-  },
-  format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+	formatters_by_ft = {
+		nix = { "nixfmt" },
+		lua = { "stylua" },
+		sh = { "shfmt" },
+		rust = { "rustfmt" },
+	},
+	format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
 })
