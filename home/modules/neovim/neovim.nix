@@ -34,6 +34,13 @@
       conform-nvim
       gitsigns-nvim
       nvim-autopairs
+
+      # Tabs, file tree, git
+      bufferline-nvim
+      neo-tree-nvim
+      nui-nvim
+      diffview-nvim
+      lazygit-nvim
     ];
 
     # Only on nvim's PATH, not installed system-wide
@@ -59,6 +66,9 @@
       nixfmt
       stylua
       shfmt
+
+      # Git UI (needed by lazygit.nvim)
+      lazygit
     ];
 
     initLua = builtins.readFile ./init.lua;

@@ -58,6 +58,34 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Buffer tabs (Shift+L / Shift+H cycle through them)
+require("bufferline").setup({
+	options = {
+		diagnostics = "nvim_lsp",
+		offsets = { { filetype = "neo-tree", text = "Files", separator = true } },
+	},
+})
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close buffer" })
+
+-- File tree sidebar
+require("neo-tree").setup({
+	filesystem = {
+		filtered_items = { visible = true },
+		follow_current_file = { enabled = true },
+	},
+	window = { width = 30 },
+})
+vim.keymap.set("n", "<leader>t", "<cmd>Neotree toggle<cr>", { desc = "File tree" })
+
+-- Git: diff view, file history, merge tool, lazygit
+require("diffview").setup({})
+vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff against HEAD" })
+vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", { desc = "History of this file" })
+vim.keymap.set("n", "<leader>gq", "<cmd>DiffviewClose<cr>", { desc = "Close diffview" })
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })
+
 -- Completion
 require("blink.cmp").setup({
 	keymap = { preset = "default" },

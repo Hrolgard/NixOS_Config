@@ -12,6 +12,7 @@
     discord
     nextcloud-client
     btop-cuda
+    lazygit
   ];
 
   #shell aliases
