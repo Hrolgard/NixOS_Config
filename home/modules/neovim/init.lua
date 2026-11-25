@@ -58,17 +58,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Buffer tabs (Shift+L / Shift+H cycle through them)
-require("bufferline").setup({
-	options = {
-		diagnostics = "nvim_lsp",
-		offsets = { { filetype = "neo-tree", text = "Files", separator = true } },
-	},
-})
-vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close buffer" })
-
 -- File tree sidebar
 require("neo-tree").setup({
 	filesystem = {

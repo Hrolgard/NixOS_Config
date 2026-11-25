@@ -36,7 +36,6 @@
       nvim-autopairs
 
       # Tabs, file tree, git
-      bufferline-nvim
       neo-tree-nvim
       nui-nvim
       diffview-nvim
