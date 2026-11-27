@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   #Home definitions
   home.username = "hrolgard";
   home.homeDirectory = "/home/hrolgard";
@@ -45,4 +45,13 @@
 
   programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
   programs.fish.enable = true; # Shell
+
+
+  xdg.configFile."vkBasalt/AW2726DM-srgb.cube".source = ./modules/color/AW2726DM-srgb.cube;
+  xdg.configFile."vkBasalt/vkBasalt.conf".text = ''
+    effects = lut
+    lutFile = ${config.xdg.configHome}/vkBasalt/AW2726DM-srgb.cube
+    toggleKey = Home
+  '';
+
 }

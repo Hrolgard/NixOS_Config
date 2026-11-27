@@ -1,8 +1,10 @@
-{inputs, ...}: {
+{config, inputs, ...}: {
 
     imports = [
         inputs.zen-browser.homeModules.beta
     ];
+
+    home.file.".local/share/icc/AW2726DM-rtings.icm".source = ./color/AW2726DM-rtings.icm;
 
     programs.zen-browser = {
         enable = true;
@@ -15,6 +17,12 @@
             "zen.view.compact.hide-tabbar" = true;
             "zen.urlbar.behavior" = "float";
             "zen.welcome-screen.seen" = true;
+
+            # Profilname wie in deiner Config
+            "gfx.color_management.mode" = 1;          # alle Inhalte als sRGB behandeln
+            "gfx.color_management.enablev4" = true;   # Pflicht: Profil ist ICC v4
+            "gfx.color_management.display_profile" =
+            "${config.home.homeDirectory}/.local/share/icc/AW2726DM-rtings.icm";
         };
 
         policies = let

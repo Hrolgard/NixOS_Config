@@ -10,6 +10,8 @@
     xwayland-satellite
     pkgs.plex-desktop
     pkgs.htop
+    pkgs.vkbasalt
+    pkgs.pkgsi686Linux.vkbasalt   # für 32-Bit-Spiele
   ];
 
   environment.sessionVariables = {

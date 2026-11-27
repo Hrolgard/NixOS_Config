@@ -2,16 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [ # Gemeinsame Module fuer alle Hosts.
-      ./modules/audio.nix
-      ./modules/common-apps.nix
-      ./modules/noctalia_greeter.nix
-      ./modules/audacity.nix
-    ];
+  imports = [
+    # Gemeinsame Module fuer alle Hosts.
+    ./modules/audio.nix
+    ./modules/common-apps.nix
+    ./modules/noctalia_greeter.nix
+    ./modules/audacity.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -84,7 +84,10 @@
   users.users."hrolgard" = {
     isNormalUser = true;
     description = "Andreas Weber";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Allow unfree packages
@@ -92,7 +95,10 @@
 
   # Nix-Settings
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [ "https://noctalia.cachix.org" ];
     trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
@@ -100,8 +106,8 @@
   };
 
   # Fixes Dolphin file associations / default apps outside of KDE Plasma
-  environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
-
+  environment.etc."xdg/menus/applications.menu".source =
+    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
